@@ -1,0 +1,9 @@
+name: hermine-ci
+on: worflow_dispatch
+jobs: 
+  hermine: 
+  name: hermine
+  runs-on: ubuntu-latest
+  steps:
+    - run: curl https://chantier.hermine-foss.org/api/upload_spdx/ -X POST -F 'spdx_file=@test.spdx.yaml' -F 'release_id=1'
+    
