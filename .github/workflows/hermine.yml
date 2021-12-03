@@ -1,5 +1,7 @@
 name: hermine-ci
-on: workflow_dispatch
+on:
+  - push
+  - workflow_dispatch
 jobs: 
   hermine: 
     name: hermine
