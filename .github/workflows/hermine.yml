@@ -7,6 +7,7 @@ jobs:
     name: hermine
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - run: pwd 
       - run: ls -a
       - run: curl https://chantier.hermine-foss.org/api/upload_spdx/ -X PUT -F 'spdx_file=@venom_short.spdx.yaml' -F 'release_id=24'
