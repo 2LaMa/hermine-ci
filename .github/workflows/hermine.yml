@@ -5,10 +5,11 @@ jobs:
     name: hermine
     runs-on: ubuntu-latest
     steps:
-      - working-directory: ~/hermine-ci/
+      - working-directory: ./.github/workflows
         run: pwd 
       - name: where am i
-        working-directory: ~/hermine-ci/
+        working-directory: ./.github/workflows
         run: ls -a
-      - run: curl https://chantier.hermine-foss.org/api/upload_spdx/ -X PUT -F 'spdx_file=@~/.github/workflows/venom_short.spdx.yaml' -F 'release_id=24'
+      - working-directory: ./.github/workflows
+        run: curl https://chantier.hermine-foss.org/api/upload_spdx/ -X PUT -F 'spdx_file=@venom_short.spdx.yaml' -F 'release_id=24'
     
