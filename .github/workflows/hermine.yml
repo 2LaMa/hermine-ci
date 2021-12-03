@@ -8,5 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: curl https://chantier.hermine-foss.org/api/upload_spdx/ -X PUT -F 'spdx_file=@venom_short.spdx.yaml' -F 'release_id=24' -H 'Authorization: Token=
+      - run: curl https://chantier.hermine-foss.org/api/upload_spdx/ -X PUT -F 'spdx_file=@venom_short.spdx.yaml' -F 'release_id=24' -H 'Authorization: Token=${{ secrets.TOKEN }}'
     
