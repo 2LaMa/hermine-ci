@@ -1,0 +1,18 @@
+name: hermine-ci
+on:
+  - push
+  - workflow_dispatch
+jobs:
+  validation-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: API call
+        id: validation-1
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: 'http://127.0.0.1:8080/api/releases/52/unnormalised_usages'
+          method: 'GET'
+          # username: ${{ secrets.AWX_USER }}
+          # password: ${{ secrets.AWX_PASSWORD }}
+      - name: Show Response
+        run: echo ${{ steps.validation-1.outputs.response }}
