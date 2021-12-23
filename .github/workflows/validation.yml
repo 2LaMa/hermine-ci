@@ -18,7 +18,7 @@ jobs:
         
   validation-2:
     needs: validation-1
-    if: fromJSON(jobs.validation-1.steps.call-1.outputs.response).valid
+    if: fromJSON(validation-1.steps.call-1.outputs.response).valid
     runs-on: ubuntu-latest
     steps:
       - name: call-2
