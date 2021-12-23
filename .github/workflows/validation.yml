@@ -18,8 +18,8 @@ jobs:
         
   validation-2:
     needs: validation-1
-    runs-on: ubuntu-latest
     if: ${{ fromJSON(jobs.validation-1.steps.call-1.outputs.response).valid }}
+    runs-on: ubuntu-latest
     steps:
       - name: call-2
         id: call-2
@@ -48,7 +48,7 @@ jobs:
         run: echo ${{ steps.call-3.outputs.response }}
   
   validation-4:
-    needs: validation-2
+    needs: validation-3
     if: ${{ fromJSON(jobs.validation-3.steps.call-3.outputs.response).valid }}
     runs-on: ubuntu-latest
     steps:
