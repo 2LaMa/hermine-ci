@@ -1,4 +1,4 @@
-name: hermine-ci
+name: validation-steps
 on:
   - push
   - workflow_dispatch
