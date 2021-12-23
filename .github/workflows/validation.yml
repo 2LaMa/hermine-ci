@@ -15,16 +15,20 @@ jobs:
           # bearerToken: 
       - name: Show Response
         run: echo ${{ steps.validation-1.outputs.response }}
+        
       
       - name: validation-2
         id: validation-2
         uses: fjogeleit/http-request-action@master
+        if: ${{ fromJSON(steps.validation-1.outputs.response).valid }}
         with:
           url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_to_check'
           method: 'GET'
           # bearerToken: 
       - name: Show Response
         run: echo ${{ steps.validation-2.outputs.response }}
+
+        
       
       - name: validation-3
         id: validation-3
