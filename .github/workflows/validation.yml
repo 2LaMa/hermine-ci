@@ -33,6 +33,7 @@ jobs:
       - name: validation-3
         id: validation-3
         uses: fjogeleit/http-request-action@master
+        if: ${{ fromJSON(steps.validation-2.outputs.response).valid }}
         with:
           url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_usages'
           method: 'GET'
@@ -43,6 +44,7 @@ jobs:
       - name: validation-4
         id: validation-4
         uses: fjogeleit/http-request-action@master
+        if: ${{ fromJSON(steps.validation-3.outputs.response).valid }}
         with:
           url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_against_policy'
           method: 'GET'
