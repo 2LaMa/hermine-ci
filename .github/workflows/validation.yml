@@ -10,8 +10,9 @@ jobs:
         id: validation-1
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'http://127.0.0.1:8080/api/releases/52/unnormalised_usages'
+          url: 'https://chantier.hermine-foss.org/api/releases/33/unnormalised_usages'
           method: 'GET'
+          # bearerToken: 
           # username: ${{ secrets.AWX_USER }}
           # password: ${{ secrets.AWX_PASSWORD }}
       - name: Show Response
