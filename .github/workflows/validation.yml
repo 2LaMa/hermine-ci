@@ -38,8 +38,8 @@ jobs:
 
         
   validation-3:
-    needs: [validation-1, validation-2]
-    if: fromJSON(needs.validation-2.outputs.result).valid
+    needs: validation-2
+    # if: fromJSON(needs.validation-2.outputs.result).valid
     runs-on: ubuntu-latest
     outputs: 
       result: ${{ steps.set-result.outputs.result }}
