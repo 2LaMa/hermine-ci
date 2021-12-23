@@ -23,44 +23,50 @@ jobs:
     needs: validation-1
     if: fromJSON(needs.validation-1.outputs.result).valid
     runs-on: ubuntu-latest
+    outputs: 
+      result: ${{ steps.set-result.outputs.result }}
     steps:
-      - name: call-2
-        id: call-2
+      - name: call
+        id: call
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_to_check'
           method: 'GET'
           # bearerToken: 
-      - name: Show Response
-        run: echo ${{ steps.call-2.outputs.response }}
+      - id: set-result
+        run: echo "::set-output name=result::${{ steps.call.outputs.response }}"
 
         
   validation-3:
     needs: validation-2
     if: fromJSON(jobs.validation-2.steps.call-2.outputs.response).valid
     runs-on: ubuntu-latest
-    steps: 
-      - name: call-3
-        id: call-3
+    outputs: 
+      result: ${{ steps.set-result.outputs.result }}
+    steps:
+      - name: call
+        id: call
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_usages'
           method: 'GET'
           # bearerToken: 
-      - name: Show Response
-        run: echo ${{ steps.call-3.outputs.response }}
+      - id: set-result
+        run: echo "::set-output name=result::${{ steps.call.outputs.response }}"
   
   validation-4:
     needs: validation-3
     if: fromJSON(jobs.validation-3.steps.call-3.outputs.response).valid
     runs-on: ubuntu-latest
+    outputs: 
+      result: ${{ steps.set-result.outputs.result }}
     steps:
-      - name: call-4
-        id: call-4
+      - name: call
+        id: call
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_against_policy'
           method: 'GET'
           # bearerToken: 
-      - name: Show Response
-        run: echo ${{ steps.call-4.outputs.response }}
+      - id: set-result
+        run: echo "::set-output name=result::${{ steps.call.outputs.response }}"
