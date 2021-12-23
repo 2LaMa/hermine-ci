@@ -5,20 +5,23 @@ on:
 jobs:
   validation-1:
     runs-on: ubuntu-latest
+    outputs: 
+      result: ${{ steps.set-result.outputs.result }}
     steps:
-      - name: call-1
-        id: call-1
+      - name: call
+        id: call
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://chantier.hermine-foss.org/api/releases/33/unnormalised_usages'
           method: 'GET'
           # bearerToken: 
-      - name: Show Response
-        run: echo ${{ steps.call-1.outputs.response }}
+      - id: set-result
+        run: echo "::set-output name=result::${{ steps.call.outputs.response }}"
+        
         
   validation-2:
     needs: validation-1
-    if: fromJSON(steps.call-1.outputs.response).valid
+    if: fromJSON(needs.validation-1.outputs.result).valid
     runs-on: ubuntu-latest
     steps:
       - name: call-2
