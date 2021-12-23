@@ -34,7 +34,7 @@ jobs:
         
   validation-3:
     needs: validation-2
-    if: ${{ fromJSON(jobs.validation-2.steps.call-2.outputs.response).valid }}
+    if: fromJSON(jobs.validation-2.steps.call-2.outputs.response).valid
     runs-on: ubuntu-latest
     steps: 
       - name: call-3
@@ -49,7 +49,7 @@ jobs:
   
   validation-4:
     needs: validation-3
-    if: ${{ fromJSON(jobs.validation-3.steps.call-3.outputs.response).valid }}
+    if: fromJSON(jobs.validation-3.steps.call-3.outputs.response).valid
     runs-on: ubuntu-latest
     steps:
       - name: call-4
