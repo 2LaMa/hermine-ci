@@ -1,7 +1,13 @@
 name: validation-steps
 on:
-  - push
-  - workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      release_id:
+        type: string
+        description: ID of the release to run the validation on
+        required: true
+        default: '24'
+
 jobs:
   validation-1:
     runs-on: ubuntu-latest
@@ -12,7 +18,7 @@ jobs:
         id: call
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'https://chantier.hermine-foss.org/api/releases/33/unnormalised_usages'
+          url: 'https://chantier.hermine-foss.org/api/releases/${{github.event.inputs.message}}/unnormalised_usages'
           method: 'GET'
           # bearerToken: 
       - id: set-result
