@@ -77,8 +77,8 @@ jobs:
         run: echo "::set-output name=result::${{ steps.call.outputs.response }}"
         
   success:
-     needs: validation-3
-     if: fromJSON(needs.validation-3.outputs.result).valid
+     needs: validation-4
+     if: fromJSON(needs.validation-4.outputs.result).valid
      runs-on: ubuntu-latest
      steps:
         - id: success
