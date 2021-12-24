@@ -75,3 +75,11 @@ jobs:
           # bearerToken: 
       - id: set-result
         run: echo "::set-output name=result::${{ steps.call.outputs.response }}"
+        
+  success:
+     needs: validation-3
+     if: fromJSON(needs.validation-3.outputs.result).valid
+     runs-on: ubuntu-latest
+     steps:
+        - id: success
+          run: echo "The release ${{github.event.inputs.release_id}} is good to go !"
