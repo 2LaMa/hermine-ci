@@ -35,7 +35,7 @@ jobs:
         id: call
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_to_check'
+          url: 'https://chantier.hermine-foss.org/api/releases/${{github.event.inputs.release_id}}/licenses_to_check'
           method: 'GET'
           # bearerToken: 
       - id: set-result
@@ -53,7 +53,7 @@ jobs:
         id: call
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_usages'
+          url: 'https://chantier.hermine-foss.org/api/releases/${{github.event.inputs.release_id}}/licenses_usages'
           method: 'GET'
           # bearerToken: 
       - id: set-result
@@ -70,7 +70,7 @@ jobs:
         id: call
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'https://chantier.hermine-foss.org/api/releases/33/licenses_against_policy'
+          url: 'https://chantier.hermine-foss.org/api/releases/${{github.event.inputs.release_id}}/licenses_against_policy'
           method: 'GET'
           # bearerToken: 
       - id: set-result
