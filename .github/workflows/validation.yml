@@ -6,7 +6,6 @@ on:
         type: string
         description: ID of the release to run the validation on
         required: true
-        default: '24'
 
 jobs:
   validation-1:
@@ -18,7 +17,7 @@ jobs:
         id: call
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'https://chantier.hermine-foss.org/api/releases/${{github.event.inputs.message}}/unnormalised_usages'
+          url: 'https://chantier.hermine-foss.org/api/releases/${{github.event.inputs.release_id}}/unnormalised_usages'
           method: 'GET'
           # bearerToken: 
       - id: set-result
